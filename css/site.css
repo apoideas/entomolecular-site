@@ -52,7 +52,7 @@ body { color-scheme: dark; }
 .logo-float.is-in { animation: logo-in 3s ease forwards; }
 
 .logo-float.is-docked {
-  transform: translate(calc(92px - 50%), calc(78px - 50%)) scale(0.5);
+  transform: translate(calc(101px - 50%), calc(87px - 50%)) scale(0.575);
 }
 
 .menu {
@@ -499,7 +499,16 @@ a:focus-visible {
     transform: translate(calc(50vw - 50%), calc(30vh - 50%)) scale(1.15);
   }
   .logo-float.is-docked {
-    transform: translate(calc(70px - 50%), calc(52px - 50%)) scale(0.36);
+    transform: translate(calc(77px - 50%), calc(59px - 50%)) scale(0.414);
+  }
+  .logo-float.is-docked #chain {
+    transition: opacity 0.4s ease;
+  }
+  .logo-float.is-docked.is-covered {
+    pointer-events: none;
+  }
+  .logo-float.is-docked.is-covered #chain {
+    opacity: 0;
   }
   .tagline {
     top: auto;

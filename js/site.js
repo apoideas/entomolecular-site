@@ -16,10 +16,49 @@
     return panels[0].offsetHeight || window.innerHeight;
   }
 
+  const mobileLogo = matchMedia("(max-width: 800px)");
+
+  function logoCover() {
+    if (!logo) return;
+    if (!logo.classList.contains("is-docked") || !mobileLogo.matches) {
+      logo.classList.remove("is-covered");
+      return;
+    }
+    const box = logo.getBoundingClientRect();
+    const pad = 12;
+    const nodes = panels[index].querySelectorAll("h1, h2, p, li");
+    let covered = false;
+    for (let i = 0; i < nodes.length; i++) {
+      const node = nodes[i];
+      if (node.closest && node.closest(".legend, .badge, .status")) continue;
+      if (!node.textContent || !node.textContent.trim()) continue;
+      const r = node.getBoundingClientRect();
+      if (r.width < 1 || r.height < 1) continue;
+      if (r.left < box.right + pad && r.right > box.left - pad && r.top < box.bottom + pad && r.bottom > box.top + pad) {
+        covered = true;
+        break;
+      }
+    }
+    logo.classList.toggle("is-covered", covered);
+  }
+
+  let coverTimer = 0;
+  function scheduleLogoCover() {
+    clearTimeout(coverTimer);
+    coverTimer = setTimeout(logoCover, 900);
+  }
+
   function sync() {
+    const wasDocked = !!(logo && logo.classList.contains("is-docked"));
     up.hidden = index === 0;
     down.hidden = index === panels.length - 1;
     if (logo) logo.classList.toggle("is-docked", index > 0);
+    if (!logo || !logo.classList.contains("is-docked") || !mobileLogo.matches) {
+      if (logo) logo.classList.remove("is-covered");
+      return;
+    }
+    if (wasDocked) logoCover();
+    else scheduleLogoCover();
   }
 
   function go(next) {
@@ -49,6 +88,7 @@
       if (t < 1) requestAnimationFrame(frame);
       else {
         lock = false;
+        logoCover();
         if (index === 1 && typeof window.emProteinResize === "function") window.emProteinResize();
       }
     })(performance.now());
@@ -61,6 +101,9 @@
   });
 
   if (logo) {
+    logo.addEventListener("transitionend", function (event) {
+      if (event.propertyName === "transform") logoCover();
+    });
     logo.addEventListener(
       "click",
       function (event) {
@@ -154,8 +197,11 @@
     }
   });
 
+  document.addEventListener("scroll", logoCover, true);
+
   window.addEventListener("resize", function () {
     deck.scrollTop = index * height();
+    logoCover();
   });
 
   function setMenu(open) {
