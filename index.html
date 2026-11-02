@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>entomolecular</title>
+    <meta
+      name="description"
+      content="Computational foraging across the proteomic frontier. Short secreted arthropod proteins, chosen by fold."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Space+Grotesk:wght@500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/site.css" />
+  </head>
+  <body>
+    <div class="frame" aria-hidden="true"></div>
+
+    <div class="logo-float" id="logo-float">
+      <div id="chain" role="img" aria-label="ENTOMOLECULAR folding animation"></div>
+    </div>
+
+    <div class="menu">
+      <button
+        class="nav-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="nav-panel"
+        aria-label="Menu"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div id="nav-panel" class="nav-pop" hidden>
+        <button class="nav-item" type="button" data-go="about">About</button>
+      </div>
+    </div>
+
+    <div class="deck" id="deck">
+      <section class="panel panel-landing" id="top" aria-label="Landing">
+        <div class="landing-fade" id="landing-fade">
+          <p class="tagline">computational foraging across the proteomic frontier</p>
+        </div>
+      </section>
+
+      <section class="panel panel-scroll" id="nature" aria-label="Nature">
+        <div class="sheet">
+          <p class="lede">
+            Nature is a process for generating locally negentropic solutions to
+            the challenge of universal thermodynamic destiny. That's a big
+            challenge.
+          </p>
+          <p>
+            On Earth, Nature has developed molecular machines as its keystone
+            technology. These molecular machines are proteins. Their blueprints
+            are written as DNA inside organismal genomes. Reading, understanding,
+            and modifying these blueprints is the field of proteomics.
+          </p>
+        </div>
+      </section>
+
+      <section class="panel panel-scroll" id="search" aria-label="The search">
+        <div class="sheet">
+          <p class="lede">
+            Entomolecular uses cutting-edge computational tools to look for
+            novel protein configurations in the growing longtail of sequenced
+            insect genomes.
+          </p>
+          <p>
+            These genomes are already public, and more of them are released
+            every year. But the vast majority have never been searched for short
+            amino acid sequences that could be useful to humanity. In that tail
+            the sequences have drifted. The folds have not.
+          </p>
+        </div>
+      </section>
+
+      <section class="panel panel-scroll" id="insects" aria-label="Why insects">
+        <div class="sheet">
+          <h1>Why insects?</h1>
+          <p>
+            Insects are the most abundant and diverse terrestrial animals on the
+            planet. Humanity has named about 1 million species, roughly
+            two-thirds of every animal species ever described, but we believe
+            that is less than 20% of the true total. Their diverse biologies and
+            behaviors means genetic diversity which means protein diversity.
+          </p>
+          <p>
+            Yet less than 10 thousand insect genomes have been sequenced, and
+            only a tiny fraction of those have been annotated such that their
+            proteomes are legible to us. For the majority of sequenced insect
+            genomes, let alone all insect genomes, their proteomes remain
+            largely inscrutable. This is an enormous opportunity.
+          </p>
+          <p>
+            Parasitoid wasps use complex neurotoxins to control the behavior of
+            hosts. Ants farm massive fungus gardens 5 meters underground.
+            Mosquitoes take blood and the cover of anesthetizing saliva. Other
+            insects spin silk, or force a plant to grow a gall, or survive high
+            altitudes and freezing temperatures. Each of these unique lifestyles
+            is made possible by a set of proteins.
+          </p>
+          <p>
+            This is why Entomolecular is focused on this nearly untapped natural
+            resource.
+          </p>
+        </div>
+      </section>
+
+      <section class="panel panel-scroll" id="combinatorics" aria-label="Combinatorics">
+        <div class="sheet">
+          <h1>Consider the combinatorics of protein assembly.</h1>
+          <p>
+            Classical computers, like proteins, are wonderful machines. But when
+            it comes to designing and folding proteins, they face a gargantuan
+            hurdle. For example, a single small chain of 100 amino acids, with
+            one of the 20 possible residues at each position, contains
+            20<sup>100</sup> possible configurations. A game of chess, the
+            classic combinatorial example, and whose full solution still eludes
+            our most powerful computers, has about 10<sup>120</sup> possible
+            paths — our single 100 amino acid chain is more complex by an order
+            of more than 10 billion.
+          </p>
+          <p>
+            Once you decide on a sequence of amino acids, folding multiplies the
+            problem. If the chain has just 3 degrees of freedom at each of its
+            100 links, it can take on 3<sup>100</sup> possible shapes. If a
+            computer were to try one shape every trillionth of a second, all the
+            folds would last 10<sup>18</sup> ages of the universe.
+          </p>
+          <p>
+            Meanwhile, Nature has been searching this vast computational space
+            for billions of years, producing a refined library of incredible
+            machines, vetted by adversarial evolutionary ecology, and waiting to
+            be discovered by curious humans. This is why searching this
+            naturally prepared library is still our best method of developing
+            useful proteins for use in medicine, agriculture, and industry.
+          </p>
+        </div>
+      </section>
+
+      <section class="panel panel-scroll" id="toolkit" aria-label="Toolkit">
+        <div class="sheet sheet-wide">
+          <h1>From a genome to a test.</h1>
+          <p>
+            Given a protein or target molecule of interest, we use computational
+            search and modeling through to narrow the insect proteome down to
+            viable candidate proteins. From there, wet lab assays with real
+            proteins are the crucial next step. Our first search has been for
+            Cys-rich Kunitz class protease inhibitors. This is an overview of
+            our process:
+          </p>
+          <ol class="flow">
+            <li>
+              <span class="flow-name">Read</span>
+              <span class="flow-note">Annotated proteins from a public genome. Supplement with literature search.</span>
+            </li>
+            <li>
+              <span class="flow-name">Select</span>
+              <span class="flow-note">Short chains, preferably secreted, with 6 cysteines forming a disulfide backbone.</span>
+            </li>
+            <li>
+              <span class="flow-name">Rank</span>
+              <span class="flow-note">Protein language models filter the sequences whose configuration looks viable.</span>
+            </li>
+            <li>
+              <span class="flow-name">Fold</span>
+              <span class="flow-note">Structure models use GPU processing to predict the chain's 3D geometry.</span>
+            </li>
+            <li>
+              <span class="flow-name">Match</span>
+              <span class="flow-note">The shape is compared with known toxin and drug scaffold references.</span>
+            </li>
+            <li class="is-next">
+              <span class="flow-name">Assay</span>
+              <span class="flow-note">Synthesize the most promising candidates and assess selectivity, effectiveness, viability, toxicity, etcetera.</span>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="panel panel-thesis panel-scroll" id="findings" aria-label="Findings">
+        <div class="split">
+          <div class="copy">
+            <h1>What the folds returned.</h1>
+            <p>
+              The object of our first search effort is the Kunitz class of
+              protease inhibitors. Secreted versions of the fold turned up
+              several in Hymenoptera species — ants and solitary bees. The
+              matches were structurally homologous to reference protease
+              inhibitors but their sequence identities were only 30 to 40
+              percent. The shape similarity is the filter, the sequence
+              distance is what makes these findings compelling to continue.
+            </p>
+            <p>The next step is a protease assay.</p>
+          </div>
+
+          <figure class="specimen">
+            <div class="stage">
+              <p class="badge">Example of a candidate protein</p>
+              <div id="status" class="status">Loading structure…</div>
+              <div id="viewport"></div>
+              <div class="legend" aria-hidden="true">
+                <span><i class="swatch helix"></i>helix</span>
+                <span><i class="swatch beta"></i>sheet</span>
+                <span><i class="swatch loop"></i>loop</span>
+                <span><i class="swatch cys"></i>Cys</span>
+              </div>
+            </div>
+            <figcaption>
+              <h2>Southeastern blueberry bee, <em>Habropoda laboriosa</em></h2>
+              <p>
+                A computed model of a short secreted protein. The shape is a
+                Kunitz domain, and along the structural alignment it shares
+                about 40 percent of its sequence with the reference. The yellow
+                spheres mark the cysteines that are the marquee feature of the
+                disulfide backbone of this class of proteins.
+              </p>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="panel panel-scroll" id="about" aria-label="About">
+        <div class="sheet">
+          <h1>About</h1>
+          <p>
+            Entomolecular is a bioprospecting startup based in California,
+            started by a small group of ento- and molecular biologists.
+          </p>
+        </div>
+      </section>
+    </div>
+
+    <button class="arrow arrow-up" type="button" data-dir="-1" aria-label="Previous page" hidden>
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M6 14.5 L12 8.5 L18 14.5" />
+      </svg>
+    </button>
+    <button class="arrow arrow-down" type="button" data-dir="1" aria-label="Next page">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M6 9.5 L12 15.5 L18 9.5" />
+      </svg>
+    </button>
+
+    <script type="module">
+      import { mountChain } from "./animations/chain.js";
+
+      const fade = document.getElementById("landing-fade");
+      const logo = document.getElementById("logo-float");
+      const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+      await mountChain(document.getElementById("chain"), {
+        foldsUrl: "./animations/folds.json",
+        linearEvery: 7,
+        generatedFolds: 12,
+        showCaption: false,
+        fitStep: true,
+        background: "transparent",
+        initialHoldMs: reduce ? 1e9 : 5000,
+        fontFamily: '"Space Grotesk", ui-sans-serif, system-ui, sans-serif',
+      });
+      fade.classList.add("is-in");
+      logo.classList.add("is-in");
+    </script>
+    <script src="js/protein.js"></script>
+    <script src="js/site.js"></script>
+  </body>
+</html>
