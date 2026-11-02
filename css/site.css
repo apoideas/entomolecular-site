@@ -502,7 +502,8 @@ a:focus-visible {
     transform: translate(calc(77px - 50%), calc(59px - 50%)) scale(0.414);
   }
   .logo-float.is-docked #chain {
-    transition: opacity 0.4s ease;
+    opacity: 1;
+    transition: opacity 0.7s ease;
   }
   .logo-float.is-docked.is-covered {
     pointer-events: none;

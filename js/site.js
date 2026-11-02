@@ -18,34 +18,61 @@
 
   const mobileLogo = matchMedia("(max-width: 800px)");
 
-  function logoCover() {
-    if (!logo) return;
-    if (!logo.classList.contains("is-docked") || !mobileLogo.matches) {
-      logo.classList.remove("is-covered");
-      return;
-    }
-    const box = logo.getBoundingClientRect();
-    const pad = 12;
+  let coverIdle = 0;
+  let coverFrame = 0;
+
+  function textHitsLogo() {
+    const raw = logo.getBoundingClientRect();
+    const insetX = raw.width * 0.2;
+    const insetY = raw.height * 0.22;
+    const box = {
+      left: raw.left + insetX,
+      right: raw.right - insetX,
+      top: raw.top + insetY,
+      bottom: raw.bottom - insetY,
+    };
+    if (box.right - box.left < 8 || box.bottom - box.top < 8) return false;
     const nodes = panels[index].querySelectorAll("h1, h2, p, li");
-    let covered = false;
     for (let i = 0; i < nodes.length; i++) {
       const node = nodes[i];
-      if (node.closest && node.closest(".legend, .badge, .status")) continue;
       if (!node.textContent || !node.textContent.trim()) continue;
-      const r = node.getBoundingClientRect();
-      if (r.width < 1 || r.height < 1) continue;
-      if (r.left < box.right + pad && r.right > box.left - pad && r.top < box.bottom + pad && r.bottom > box.top + pad) {
-        covered = true;
-        break;
+      const range = document.createRange();
+      range.selectNodeContents(node);
+      const rects = range.getClientRects();
+      for (let j = 0; j < rects.length; j++) {
+        const r = rects[j];
+        if (r.width < 1 || r.height < 1) continue;
+        if (r.left < box.right && r.right > box.left && r.top < box.bottom && r.bottom > box.top) {
+          return true;
+        }
       }
     }
-    logo.classList.toggle("is-covered", covered);
+    return false;
   }
 
-  let coverTimer = 0;
+  function logoCover() {
+    if (!logo) return;
+    if (lock || !logo.classList.contains("is-docked") || !mobileLogo.matches) {
+      if (!lock && logo) logo.classList.remove("is-covered");
+      return;
+    }
+    logo.classList.toggle("is-covered", textHitsLogo());
+  }
+
+  function onContentScroll() {
+    if (lock || !logo || !logo.classList.contains("is-docked") || !mobileLogo.matches) return;
+    if (coverFrame) return;
+    coverFrame = requestAnimationFrame(function () {
+      coverFrame = 0;
+      if (textHitsLogo()) logo.classList.add("is-covered");
+      clearTimeout(coverIdle);
+      coverIdle = setTimeout(logoCover, 280);
+    });
+  }
+
   function scheduleLogoCover() {
-    clearTimeout(coverTimer);
-    coverTimer = setTimeout(logoCover, 900);
+    clearTimeout(coverIdle);
+    coverIdle = setTimeout(logoCover, 900);
   }
 
   function sync() {
@@ -76,6 +103,7 @@
     if (reduce) {
       deck.scrollTop = top;
       lock = false;
+      logoCover();
       return;
     }
     const start = deck.scrollTop;
@@ -197,7 +225,9 @@
     }
   });
 
-  document.addEventListener("scroll", logoCover, true);
+  panels.forEach(function (page) {
+    page.addEventListener("scroll", onContentScroll, { passive: true });
+  });
 
   window.addEventListener("resize", function () {
     deck.scrollTop = index * height();
