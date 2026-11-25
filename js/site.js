@@ -32,7 +32,7 @@
       bottom: raw.bottom - insetY,
     };
     if (box.right - box.left < 8 || box.bottom - box.top < 8) return false;
-    const nodes = panels[index].querySelectorAll("h1, h2, p, li");
+    const nodes = panels[index].querySelectorAll("h1, h2, p, li, .figure-card");
     for (let i = 0; i < nodes.length; i++) {
       const node = nodes[i];
       if (!node.textContent || !node.textContent.trim()) continue;
@@ -144,10 +144,15 @@
     );
   }
 
+  function modalOpen() {
+    return document.body.classList.contains("has-figure-modal");
+  }
+
   window.addEventListener(
     "wheel",
     function (event) {
-      if (event.target.closest && event.target.closest("#viewport, .stage")) return;
+      if (modalOpen()) return;
+      if (event.target.closest && event.target.closest("#viewport, .stage, #figure-modal")) return;
       const down = event.deltaY > 0;
       if (innerScrollAbsorbs(event.target, down ? -1 : 1)) return;
       event.preventDefault();
@@ -163,10 +168,14 @@
   window.addEventListener(
     "touchstart",
     function (event) {
+      if (modalOpen()) {
+        touchY = null;
+        return;
+      }
       if (event.touches.length > 1) multiTouch = true;
       touchY = event.touches[0].clientY;
       const target = event.target;
-      touchOnStructure = !!(target.closest && target.closest("#viewport, .stage"));
+      touchOnStructure = !!(target.closest && target.closest("#viewport, .stage, #figure-modal"));
     },
     { passive: true }
   );
@@ -178,6 +187,10 @@
     { passive: true }
   );
   window.addEventListener("touchend", function (event) {
+    if (modalOpen()) {
+      touchY = null;
+      return;
+    }
     if (multiTouch) {
       if (event.touches.length === 0) {
         multiTouch = false;
@@ -212,6 +225,7 @@
   }
 
   window.addEventListener("keydown", function (event) {
+    if (modalOpen()) return;
     if (event.key === "Escape" && panel && !panel.hidden) {
       setMenu(false);
       return;

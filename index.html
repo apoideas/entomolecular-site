@@ -67,7 +67,7 @@
         <div class="sheet">
           <p class="lede">
             Entomolecular uses cutting-edge computational tools to look for
-            novel protein configurations in the growing longtail of sequenced
+            novel protein configurations in the growing long tail of sequenced
             insect genomes.
           </p>
           <p>
@@ -87,10 +87,10 @@
             planet. Humanity has named about 1 million species, roughly
             two-thirds of every animal species ever described, but we believe
             that is less than 20% of the true total. Their diverse biologies and
-            behaviors means genetic diversity which means protein diversity.
+            behaviors mean genetic diversity, which means protein diversity.
           </p>
           <p>
-            Yet less than 10 thousand insect genomes have been sequenced, and
+            Yet fewer than 10 thousand insect genomes have been sequenced, and
             only a tiny fraction of those have been annotated such that their
             proteomes are legible to us. For the majority of sequenced insect
             genomes, let alone all insect genomes, their proteomes remain
@@ -99,7 +99,7 @@
           <p>
             Parasitoid wasps use complex neurotoxins to control the behavior of
             hosts. Ants farm massive fungus gardens 5 meters underground.
-            Mosquitoes take blood and the cover of anesthetizing saliva. Other
+            Mosquitoes take blood under the cover of anesthetizing saliva. Other
             insects spin silk, or force a plant to grow a gall, or survive high
             altitudes and freezing temperatures. Each of these unique lifestyles
             is made possible by a set of proteins.
@@ -107,6 +107,89 @@
           <p>
             This is why Entomolecular is focused on this nearly untapped natural
             resource.
+          </p>
+        </div>
+      </section>
+
+      <section class="panel panel-scroll" id="divergence" aria-label="Divergence">
+        <div class="sheet sheet-wide">
+          <p class="kicker">Insecta vs. Mammalia</p>
+          <h1 class="wide-title">Deep trees build wider proteomes.</h1>
+          <p class="divergence-intro">
+            Every mammal alive today shares a relatively recent ancestor (~177
+            million years ago), keeping mammalian genomes structurally tight and
+            nearly half their core genes conserved class-wide. Insects have been
+            branching nearly three times as long (~479 million years) across
+            more than 150 times as many described species, with faster molecular
+            clocks — driving wider genomic distance and denser protein novelty.
+          </p>
+
+          <ol class="figure-triggers" aria-label="Comparative data figures">
+            <li>
+              <button
+                class="figure-card"
+                type="button"
+                data-figure="core"
+                aria-expanded="false"
+                aria-controls="figure-modal"
+              >
+                <span class="figure-step">01 · Evolutionary depth</span>
+                <span class="figure-stat">10% vs 45%</span>
+                <span class="figure-heading">Shared core genes erode over deep time</span>
+                <span class="figure-summary">
+                  Mammals still share 9,226 single-copy genes class-wide;
+                  across Insecta, only 1,367 remain conserved, freeing ~90% of
+                  each proteome to diverge.
+                </span>
+                <span class="figure-cta">Open figure →</span>
+              </button>
+            </li>
+
+            <li>
+              <button
+                class="figure-card"
+                type="button"
+                data-figure="morphospace"
+                aria-expanded="false"
+                aria-controls="figure-modal"
+              >
+                <span class="figure-step">02 · Genome architecture</span>
+                <span class="figure-stat">12.9× wider</span>
+                <span class="figure-heading">Insect blueprints span a far wider space</span>
+                <span class="figure-summary">
+                  Across 5,846 NCBI reference genomes, mammals cluster near
+                  2.6 Gb and 41.5% GC, while insects stretch from 57 Mb midges
+                  to 10.2 Gb locusts.
+                </span>
+                <span class="figure-cta">Open figure →</span>
+              </button>
+            </li>
+
+            <li class="is-highlight">
+              <button
+                class="figure-card"
+                type="button"
+                data-figure="novelty"
+                aria-expanded="false"
+                aria-controls="figure-modal"
+              >
+                <span class="figure-step">03 · Proteomic novelty</span>
+                <span class="figure-stat">3.95× richer</span>
+                <span class="figure-heading">Every insect genome yields denser novelty</span>
+                <span class="figure-summary">
+                  From 23% fewer UniProt sequences than mammals, insects yield
+                  3× more distinct protein families (1.82M vs 0.60M) — and
+                  99.4% remain unreviewed.
+                </span>
+                <span class="figure-cta">Open figure →</span>
+              </button>
+            </li>
+          </ol>
+
+          <p class="divergence-coda">
+            That sequence drift pushes homologous insect proteins past the ~30%
+            identity horizon where linear search loses sight of them — while
+            their 3D folds endure. Select any stage above to inspect the data.
           </p>
         </div>
       </section>
@@ -120,9 +203,9 @@
             hurdle. For example, a single small chain of 100 amino acids, with
             one of the 20 possible residues at each position, contains
             20<sup>100</sup> possible configurations. A game of chess, the
-            classic combinatorial example, and whose full solution still eludes
+            classic combinatorial example whose full solution still eludes
             our most powerful computers, has about 10<sup>120</sup> possible
-            paths — our single 100 amino acid chain is more complex by an order
+            paths — our single 100-amino-acid chain is more complex by a factor
             of more than 10 billion.
           </p>
           <p>
@@ -138,7 +221,7 @@
             machines, vetted by adversarial evolutionary ecology, and waiting to
             be discovered by curious humans. This is why searching this
             naturally prepared library is still our best method of developing
-            useful proteins for use in medicine, agriculture, and industry.
+            useful proteins for medicine, agriculture, and industry.
           </p>
         </div>
       </section>
@@ -148,10 +231,10 @@
           <h1>From a genome to a test.</h1>
           <p>
             Given a protein or target molecule of interest, we use computational
-            search and modeling through to narrow the insect proteome down to
+            search and modeling to narrow the insect proteome down to
             viable candidate proteins. From there, wet lab assays with real
             proteins are the crucial next step. Our first search has been for
-            Cys-rich Kunitz class protease inhibitors. This is an overview of
+            Cys-rich Kunitz-class protease inhibitors. This is an overview of
             our process:
           </p>
           <ol class="flow">
@@ -177,7 +260,7 @@
             </li>
             <li class="is-next">
               <span class="flow-name">Assay</span>
-              <span class="flow-note">Synthesize the most promising candidates and assess selectivity, effectiveness, viability, toxicity, etcetera.</span>
+              <span class="flow-note">Synthesize the most promising candidates and assess selectivity, effectiveness, viability, toxicity, et cetera.</span>
             </li>
           </ol>
         </div>
@@ -189,12 +272,12 @@
             <h1>Our initial findings</h1>
             <p>
               The object of our first search effort is the Kunitz class of
-              protease inhibitors. Secreted versions of the fold turned up
-              several in Hymenoptera species — ants and solitary bees. The
+              protease inhibitors. Secreted versions of the fold turned up in
+              several Hymenoptera species — ants and solitary bees. The
               matches were structurally homologous to reference protease
-              inhibitors but their sequence identities were only 30 to 40
-              percent. The shape similarity is the filter, the sequence
-              distance is what makes these findings compelling to continue.
+              inhibitors, but their sequence identities were only 30 to 40
+              percent. The shape similarity is the filter; the sequence
+              distance is what makes these findings compelling to pursue.
             </p>
             <p>The next step is a protease assay.</p>
           </div>
@@ -230,10 +313,52 @@
           <h1>About</h1>
           <p>
             Entomolecular is a bioprospecting startup based in California,
-            started by a small group of ento- and molecular biologists.
+            founded by a small group of ento- and molecular biologists.
           </p>
         </div>
       </section>
+    </div>
+
+    <div
+      class="figure-modal"
+      id="figure-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="figure-title"
+      hidden
+    >
+      <div class="figure-backdrop"></div>
+      <div class="figure-dialog">
+        <div class="figure-bar">
+          <div class="figure-tabs" role="tablist" aria-label="Comparative figures">
+            <button class="figure-tab" type="button" role="tab" data-figure-tab="core" aria-selected="false">
+              01 · Core erosion
+            </button>
+            <button class="figure-tab" type="button" role="tab" data-figure-tab="morphospace" aria-selected="false">
+              02 · Genome space
+            </button>
+            <button class="figure-tab" type="button" role="tab" data-figure-tab="novelty" aria-selected="false">
+              03 · Protein novelty
+            </button>
+          </div>
+          <button class="figure-close" type="button" aria-label="Close figure">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M6 6 L18 18 M18 6 L6 18" />
+            </svg>
+          </button>
+        </div>
+
+        <div class="figure-stage">
+          <div id="figure-status" class="status">Loading figure…</div>
+          <div id="figure-viewport" class="figure-viewport"></div>
+        </div>
+
+        <div class="figure-caption">
+          <h2 id="figure-title"></h2>
+          <div id="figure-body" class="figure-body"></div>
+          <p id="figure-source" class="figure-source"></p>
+        </div>
+      </div>
     </div>
 
     <button class="arrow arrow-up" type="button" data-dir="-1" aria-label="Previous page" hidden>
@@ -267,6 +392,7 @@
       logo.classList.add("is-in");
     </script>
     <script src="js/protein.js"></script>
+    <script src="js/figures.js"></script>
     <script src="js/site.js"></script>
   </body>
 </html>
