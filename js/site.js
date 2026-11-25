@@ -11,9 +11,10 @@
 
   let index = 0;
   let lock = false;
+  let cachedHeight = panels[0].offsetHeight || window.innerHeight;
 
   function height() {
-    return panels[0].offsetHeight || window.innerHeight;
+    return cachedHeight || window.innerHeight;
   }
 
   const mobileLogo = matchMedia("(max-width: 800px)");
@@ -36,6 +37,11 @@
     for (let i = 0; i < nodes.length; i++) {
       const node = nodes[i];
       if (!node.textContent || !node.textContent.trim()) continue;
+      // Fast element bounding-box reject before allocating Range
+      const nb = node.getBoundingClientRect();
+      if (nb.right <= box.left || nb.left >= box.right || nb.bottom <= box.top || nb.top >= box.bottom) {
+        continue;
+      }
       const range = document.createRange();
       range.selectNodeContents(node);
       const rects = range.getClientRects();
@@ -99,6 +105,7 @@
     if (forward) dest.scrollTop = 0;
     else dest.scrollTop = Math.max(0, dest.scrollHeight - dest.clientHeight);
     sync();
+    window.dispatchEvent(new CustomEvent("em:panel", { detail: { index: index, id: dest.id } }));
     const top = index * height();
     if (reduce) {
       deck.scrollTop = top;
@@ -110,14 +117,13 @@
     const dist = top - start;
     const t0 = performance.now();
     (function frame(now) {
-      const t = Math.min(1, (now - t0) / 850);
+      const t = Math.min(1, (now - t0) / 820);
       const e = t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
       deck.scrollTop = start + dist * e;
       if (t < 1) requestAnimationFrame(frame);
       else {
         lock = false;
         logoCover();
-        if (index === 1 && typeof window.emProteinResize === "function") window.emProteinResize();
       }
     })(performance.now());
   }
@@ -244,6 +250,7 @@
   });
 
   window.addEventListener("resize", function () {
+    cachedHeight = panels[0].offsetHeight || window.innerHeight;
     deck.scrollTop = index * height();
     logoCover();
   });

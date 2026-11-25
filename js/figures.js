@@ -2,6 +2,7 @@
   const modal = document.getElementById("figure-modal");
   if (!modal) return;
 
+  const dialog = modal.querySelector(".figure-dialog");
   const viewport = document.getElementById("figure-viewport");
   const statusEl = document.getElementById("figure-status");
   const titleEl = document.getElementById("figure-title");
@@ -14,74 +15,110 @@
 
   const ORDER = ["core", "morphospace", "novelty"];
 
-  // Structured text tokens ("em" or "sup") so scientific italics and exponents render cleanly without innerHTML
   const FIGURES = {
     core: {
       url: "figures/core-erosion.svg",
-      title: "Deep branching erodes the sequence-conserved core",
+      title: "Older branches keep fewer shared genes",
       paragraphs: [
         [
-          "Each point counts universal single-copy orthologs (",
-          { em: "BUSCO odb10" },
-          ") — essential ancestral genes still recognizable as a single shared copy across almost every member of a group. Across 14 mammal and insect clades, those shared genes decay exponentially with crown age (half-life ≈ 156 Ma, R",
-          { sup: "2" },
-          " = 0.92, p = 6.4 × 10",
-          { sup: "-8" },
-          ")."
+          "Each dot represents an animal group plotted by how long ago its living members last shared a common ancestor (horizontal axis) against the share of genes still recognizable as identical, single-copy holdovers across the entire group (vertical axis). Much like forks of a codebase drifting apart over time, that shared core shrinks exponentially — losing roughly half its genes every 150 million years."
         ],
         [
-          "Every mammal sits inside a 177 Ma window and still shares 9,226 single-copy genes class-wide (~45% of its proteome). Across ",
+          "Every mammal sits in the top-left corner: mammals branched recently enough (~177 million years ago) that nearly half of a mammal's genes (9,226) are still shared from whales to mice. Insects have been branching nearly three times longer (~479 million years) and accumulate protein mutations 2–3× faster. Across all of ",
           { em: "Insecta" },
-          " (479 Ma, with 2–3× faster amino acid clocks), only 1,367 remain universally conserved (10%) — a 6.75× drop that leaves ~90% of each insect proteome free to diverge and specialize."
+          ", only 10% of genes (1,367) remain conserved — leaving roughly 90% of every insect proteome made of diverged, duplicated, or lineage-specific proteins."
         ]
       ],
       source:
-        "OrthoDB / BUSCO odb10 (normalized to NCBI medians: 20,428 Mammalia, 13,598 Insecta) · Misof et al. (2014) Science; Peters et al. (2017); Foley et al. (2023) Science · Zdobnov et al. (2002) Science"
+        "OrthoDB / BUSCO odb10 (14 clades normalized to NCBI medians: 20,428 Mammalia, 13,598 Insecta) · Log-linear fit: t½ = 156 Ma, R² = 0.92, p = 6.4e-8 · Misof et al. (2014); Foley et al. (2023); Zdobnov et al. (2002)"
     },
     morphospace: {
       url: "figures/genome-morphospace.svg",
-      title: "Insect genomes occupy a 12.9× wider architectural space",
+      title: "Insect DNA blueprints vary 13× more than mammals'",
       paragraphs: [
         [
-          "Each hexagon summarizes public NCBI reference genomes (5,846 scaffold- and chromosome-level assemblies ≥ 50 Mb) by total DNA length (horizontal log axis) and GC content — the share of G and C bases in the sequence (vertical axis). Marginal curves show density along each axis."
+          "This map compares 5,846 public reference genomes along two basic design parameters: total blueprint length on the horizontal axis (millions to billions of DNA letters, log scale) and GC content on the vertical axis (the ratio of G/C versus A/T letters, which shapes gene density and chromosome structure). Brighter hexagons mark where more species pile up; the curves along the top and right show each axis on its own."
         ],
         [
-          "Every mammal — whale, bat, human, platypus — clusters inside a tight golden kernel around 2.57 Gb and 41.5% GC (1.0% GC IQR). Insects span 57 Mb midges to 10.17 Gb locusts and 21.5–56.5% GC: a 12.9× wider 95% confidence ellipse (Fligner–Killeen p < 10",
-          { sup: "-142" },
-          "). Our Kunitz candidate bee, ",
+          "Every mammal — whale, bat, human, platypus — packs into one narrow golden patch near 2.6 billion letters and ~41.5% GC. Insects break out in every direction, from compact 57-million-letter midges to 10-billion-letter locusts, spanning a 12.9× wider architectural footprint. That structural freedom mirrors deep genomic turnover — including compact, specialized genomes like the blueberry bee ",
           { em: "Habropoda laboriosa" },
-          ", fits into 297 Mb — a tenth the size of a human genome."
+          " (297 million letters, a tenth the size of the human genome), where our first Kunitz candidate came from."
         ]
       ],
       source:
-        "NCBI Datasets v2 reference assemblies (4,896 Insecta; 950 Mammalia; scaffold/chromosome ≥ 50 Mb) · 95% bivariate covariance ellipses (χ²₂ = 5.991) · Two-sided Fligner–Killeen dispersion tests"
+        "NCBI Datasets v2 scaffold/chromosome reference assemblies ≥ 50 Mb (4,896 Insecta; 950 Mammalia) · 95% bivariate ellipses (12.9× area ratio) · Size variance 14.5× (p < 1e-173), GC variance 10.4× (p < 1e-142), Fligner–Killeen"
     },
     novelty: {
       url: "figures/proteome-novelty.svg",
-      title: "Every insect genome unlocks 4× denser protein novelty",
+      title: "Every sequenced insect adds 4× more distinct proteins",
       paragraphs: [
         [
+          "Sequencing more species only pays off if they reveal genuinely new proteins rather than near-duplicates of ones we already know. Here, every known protein sharing at least 50% of its amino acid sequence is grouped into a single family (",
           { em: "UniRef50" },
-          " groups every known protein sharing at least 50% amino acid identity into one family, removing near-duplicates. Plotting total sequenced proteins against distinct families separates ",
-          { em: "Insecta" },
-          " and ",
-          { em: "Mammalia" },
-          " onto parallel Heaps' law tracks (R",
-          { sup: "2" },
-          " = 0.992 and 0.972), offset nearly fourfold."
+          "). Plotting total sequenced proteins (horizontal) against distinct families (vertical) shows how fast each animal group yields novel sequences: the higher a group sits, the less redundant its proteomes are."
         ],
         [
-          "Mammals have 6.22M UniProt entries but collapse into just 599,738 families (9.6% unique). From 23% fewer sequences (4.79M), insects yield 1,824,933 distinct families (38.1% unique — 3.04× more families, 3.95× novelty yield) and 11,820 Pfam domains vs 10,761, while 99.4% of insect species and families remain unsequenced or unreviewed."
+          "Mammalian databases hold 6.2 million proteins, yet 9 out of 10 collapse into repeats of the same 600,000 families. Insects sit on a dramatically higher curve: from 23% fewer sequenced proteins (4.8 million), they already yield 1.82 million distinct protein families — 3× more total families and nearly 4× more novelty per protein. And as the two bars at the bottom show, we have barely begun: 99.4% of described insect species still lack a reference genome, and 99.4% of insect protein families have never been manually reviewed."
         ]
       ],
       source:
-        "EBI UniProtKB, UniRef50, Swiss-Prot, and InterPro/Pfam across Insecta (50557), Mammalia (40674), and 16 major orders · Species coverage vs NCBI Datasets v2 reference assemblies"
+        "EBI UniProtKB, UniRef50 (<50% AA identity), Swiss-Prot, and InterPro/Pfam (11,820 Insecta vs 10,761 Mammalia domains) · Heaps' law fits across 16 orders: R² = 0.992 (Insecta), 0.972 (Mammalia) · Coverage vs NCBI Datasets v2"
     }
   };
 
-  const cache = new Map();
+  // Pre-parsed SVG DOM node cache + in-flight promise map for 0ms hover opens
+  const parsedCache = new Map();
+  const inflight = new Map();
   let activeId = null;
   let lastTrigger = null;
+  let pinned = false;
+  let openedAt = 0;
+  let hoverOpenTimer = 0;
+  let hoverCloseTimer = 0;
+  const fineHover = matchMedia("(hover: hover) and (pointer: fine)");
+
+  function prefetch(id) {
+    if (parsedCache.has(id) || inflight.has(id)) return inflight.get(id) || Promise.resolve();
+    const spec = FIGURES[id];
+    if (!spec) return Promise.resolve();
+    const p = fetch(spec.url, { priority: "low" })
+      .then(function (resp) {
+        if (!resp.ok) throw new Error("Could not load figure.");
+        return resp.text();
+      })
+      .then(function (svgText) {
+        const doc = new DOMParser().parseFromString(svgText, "image/svg+xml");
+        const svg = doc.documentElement;
+        if (!svg || svg.nodeName.toLowerCase() !== "svg") {
+          throw new Error("Could not parse figure.");
+        }
+        parsedCache.set(id, svg);
+        inflight.delete(id);
+        return svg;
+      })
+      .catch(function (err) {
+        inflight.delete(id);
+        throw err;
+      });
+    inflight.set(id, p);
+    return p;
+  }
+
+  function prefetchAll() {
+    ORDER.forEach(prefetch);
+  }
+
+  // Warm cache quietly right after initial paint so hover popups open in <1 frame
+  if (typeof requestIdleCallback === "function") {
+    requestIdleCallback(prefetchAll, { timeout: 900 });
+  } else {
+    setTimeout(prefetchAll, 150);
+  }
+  window.addEventListener("em:panel", function (event) {
+    if (event.detail && (event.detail.id === "insects" || event.detail.id === "divergence")) {
+      prefetchAll();
+    }
+  });
 
   function buildParagraph(parts) {
     const p = document.createElement("p");
@@ -101,13 +138,8 @@
     return p;
   }
 
-  function renderSvg(svgText) {
-    const doc = new DOMParser().parseFromString(svgText, "image/svg+xml");
-    const svg = doc.documentElement;
-    if (!svg || svg.nodeName.toLowerCase() !== "svg") {
-      throw new Error("Could not parse figure.");
-    }
-    viewport.replaceChildren(document.importNode(svg, true));
+  function mountSvg(svgNode) {
+    viewport.replaceChildren(document.importNode(svgNode, true));
     statusEl.classList.add("hidden");
   }
 
@@ -137,8 +169,8 @@
     });
     sourceEl.textContent = spec.source;
 
-    if (cache.has(id)) {
-      renderSvg(cache.get(id));
+    if (parsedCache.has(id)) {
+      mountSvg(parsedCache.get(id));
       return;
     }
 
@@ -146,14 +178,9 @@
     statusEl.textContent = "Loading figure…";
     statusEl.classList.remove("hidden");
 
-    fetch(spec.url)
-      .then(function (resp) {
-        if (!resp.ok) throw new Error("Could not load figure.");
-        return resp.text();
-      })
-      .then(function (svgText) {
-        cache.set(id, svgText);
-        if (activeId === id) renderSvg(svgText);
+    prefetch(id)
+      .then(function (svgNode) {
+        if (activeId === id) mountSvg(svgNode);
       })
       .catch(function (err) {
         if (activeId === id) {
@@ -162,20 +189,35 @@
       });
   }
 
-  function openModal(id, triggerEl) {
-    if (!FIGURES[id]) return;
-    if (triggerEl) lastTrigger = triggerEl;
-    modal.hidden = false;
-    document.body.classList.add("has-figure-modal");
-    loadFigure(id);
-    const card = modal.querySelector(".figure-dialog");
-    if (card) card.scrollTop = 0;
-    if (closeBtn) closeBtn.focus({ preventScroll: true });
+  function clearTimers() {
+    clearTimeout(hoverOpenTimer);
+    clearTimeout(hoverCloseTimer);
+    hoverOpenTimer = 0;
+    hoverCloseTimer = 0;
   }
 
-  function closeModal() {
+  function openModal(id, triggerEl, opts) {
+    if (!FIGURES[id]) return;
+    const isHover = !!(opts && opts.viaHover);
+    clearTimers();
+    if (triggerEl) lastTrigger = triggerEl;
+    if (!isHover) pinned = true;
+    const wasHidden = modal.hidden;
+    if (wasHidden) openedAt = performance.now();
+    modal.hidden = false;
+    document.body.classList.add("has-figure-modal");
+    if (activeId !== id || wasHidden) {
+      loadFigure(id);
+      if (dialog) dialog.scrollTop = 0;
+    }
+    if (!isHover && closeBtn) closeBtn.focus({ preventScroll: true });
+  }
+
+  function closeModal(restoreFocus) {
+    clearTimers();
     if (modal.hidden) return;
     modal.hidden = true;
+    pinned = false;
     document.body.classList.remove("has-figure-modal");
     activeId = null;
     triggers.forEach(function (btn) {
@@ -184,47 +226,103 @@
       const item = btn.closest("li");
       if (item) item.classList.remove("is-open");
     });
-    if (lastTrigger && typeof lastTrigger.focus === "function") {
+    if (restoreFocus && lastTrigger && typeof lastTrigger.focus === "function") {
       lastTrigger.focus({ preventScroll: true });
     }
   }
 
+  function scheduleHoverClose() {
+    if (pinned || modal.hidden) return;
+    clearTimeout(hoverCloseTimer);
+    hoverCloseTimer = setTimeout(function () {
+      if (!pinned) closeModal(false);
+    }, 240);
+  }
+
   triggers.forEach(function (btn) {
+    const id = btn.getAttribute("data-figure");
+
+    btn.addEventListener("pointerenter", function (event) {
+      if (event.pointerType !== "mouse" || !fineHover.matches) return;
+      prefetchAll();
+      clearTimeout(hoverCloseTimer);
+      clearTimeout(hoverOpenTimer);
+      hoverOpenTimer = setTimeout(function () {
+        openModal(id, btn, { viaHover: true });
+      }, 90);
+    });
+
+    btn.addEventListener("pointerleave", function (event) {
+      if (event.pointerType !== "mouse") return;
+      clearTimeout(hoverOpenTimer);
+      hoverOpenTimer = 0;
+    });
+
     btn.addEventListener("click", function () {
-      const id = btn.getAttribute("data-figure");
-      if (!modal.hidden && activeId === id) {
-        closeModal();
-      } else {
-        openModal(id, btn);
-      }
+      // Clicking pins the modal open (or switches to this figure and pins)
+      openModal(id, btn, { viaHover: false });
     });
   });
+
+  if (dialog) {
+    dialog.addEventListener("pointerenter", function () {
+      clearTimeout(hoverCloseTimer);
+    });
+    dialog.addEventListener("pointerleave", function (event) {
+      if (event.pointerType !== "mouse" || pinned) return;
+      scheduleHoverClose();
+    });
+    dialog.addEventListener("click", function (event) {
+      if (event.target.closest(".figure-close")) return;
+      pinned = true;
+    });
+  }
 
   tabs.forEach(function (tab) {
+    const id = tab.getAttribute("data-figure-tab");
+    tab.addEventListener("pointerenter", function (event) {
+      if (event.pointerType !== "mouse" || !fineHover.matches) return;
+      clearTimeout(hoverCloseTimer);
+      if (id && id !== activeId) loadFigure(id);
+    });
     tab.addEventListener("click", function () {
-      const id = tab.getAttribute("data-figure-tab");
+      pinned = true;
       if (id && id !== activeId) {
         loadFigure(id);
-        const card = modal.querySelector(".figure-dialog");
-        if (card) card.scrollTop = 0;
+        if (dialog) dialog.scrollTop = 0;
       }
     });
   });
 
-  if (closeBtn) closeBtn.addEventListener("click", closeModal);
-  if (backdrop) backdrop.addEventListener("click", closeModal);
+  if (closeBtn) {
+    closeBtn.addEventListener("click", function () {
+      closeModal(true);
+    });
+  }
+  if (backdrop) {
+    backdrop.addEventListener("pointermove", function (event) {
+      if (event.pointerType !== "mouse" || pinned || modal.hidden) return;
+      if (performance.now() - openedAt < 450) return;
+      scheduleHoverClose();
+    });
+    backdrop.addEventListener("click", function () {
+      closeModal(true);
+    });
+  }
 
   window.addEventListener("keydown", function (event) {
     if (modal.hidden) return;
     if (event.key === "Escape") {
       event.preventDefault();
-      closeModal();
+      closeModal(true);
     } else if (event.key === "ArrowRight") {
       event.preventDefault();
+      pinned = true;
       const idx = ORDER.indexOf(activeId);
       loadFigure(ORDER[(idx + 1) % ORDER.length]);
     } else if (event.key === "ArrowLeft") {
       event.preventDefault();
+      pinned = true;
       const idx = ORDER.indexOf(activeId);
       loadFigure(ORDER[(idx - 1 + ORDER.length) % ORDER.length]);
     }

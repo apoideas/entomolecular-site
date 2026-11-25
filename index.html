@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#000000" />
     <title>entomolecular</title>
     <meta
       name="description"
@@ -14,6 +15,8 @@
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Space+Grotesk:wght@500;600&display=swap"
       rel="stylesheet"
     />
+    <link rel="modulepreload" href="animations/chain.js" />
+    <link rel="preload" href="animations/folds.json" as="fetch" crossorigin />
     <link rel="stylesheet" href="css/site.css" />
   </head>
   <body>
@@ -116,12 +119,13 @@
           <p class="kicker">Insecta vs. Mammalia</p>
           <h1 class="wide-title">Deep trees build wider proteomes.</h1>
           <p class="divergence-intro">
-            Every mammal alive today shares a relatively recent ancestor (~177
-            million years ago), keeping mammalian genomes structurally tight and
-            nearly half their core genes conserved class-wide. Insects have been
-            branching nearly three times as long (~479 million years) across
-            more than 150 times as many described species, with faster molecular
-            clocks — driving wider genomic distance and denser protein novelty.
+            Every mammal alive today shares a relatively recent common ancestor
+            (~177 million years ago), keeping mammalian DNA blueprints tightly
+            clustered and nearly half their genes conserved across the entire
+            class. Insects have been branching nearly three times as long (~479
+            million years) across more than 150 times as many described species,
+            with faster mutation rates — yielding far wider genomes and denser
+            protein novelty.
           </p>
 
           <ol class="figure-triggers" aria-label="Comparative data figures">
@@ -135,13 +139,13 @@
               >
                 <span class="figure-step">01 · Evolutionary depth</span>
                 <span class="figure-stat">10% vs 45%</span>
-                <span class="figure-heading">Shared core genes erode over deep time</span>
+                <span class="figure-heading">Older branches keep fewer shared genes</span>
                 <span class="figure-summary">
-                  Mammals still share 9,226 single-copy genes class-wide;
-                  across Insecta, only 1,367 remain conserved, freeing ~90% of
-                  each proteome to diverge.
+                  Nearly half of a mammal's genes (9,226) remain shared across
+                  all mammals. Across insects, only 10% (1,367) do — leaving
+                  ~90% free to diverge and specialize.
                 </span>
-                <span class="figure-cta">Open figure →</span>
+                <span class="figure-cta"><span class="cta-hover">Hover to inspect</span><span class="cta-tap">Tap to inspect</span></span>
               </button>
             </li>
 
@@ -155,13 +159,13 @@
               >
                 <span class="figure-step">02 · Genome architecture</span>
                 <span class="figure-stat">12.9× wider</span>
-                <span class="figure-heading">Insect blueprints span a far wider space</span>
+                <span class="figure-heading">Insect DNA blueprints span 13× more space</span>
                 <span class="figure-summary">
-                  Across 5,846 NCBI reference genomes, mammals cluster near
-                  2.6 Gb and 41.5% GC, while insects stretch from 57 Mb midges
-                  to 10.2 Gb locusts.
+                  Across 5,846 public genomes, mammals cluster near 2.6 billion
+                  DNA letters. Insects span 57-million-letter midges to
+                  10-billion-letter locusts.
                 </span>
-                <span class="figure-cta">Open figure →</span>
+                <span class="figure-cta"><span class="cta-hover">Hover to inspect</span><span class="cta-tap">Tap to inspect</span></span>
               </button>
             </li>
 
@@ -175,13 +179,13 @@
               >
                 <span class="figure-step">03 · Proteomic novelty</span>
                 <span class="figure-stat">3.95× richer</span>
-                <span class="figure-heading">Every insect genome yields denser novelty</span>
+                <span class="figure-heading">Every insect adds 4× more distinct proteins</span>
                 <span class="figure-summary">
-                  From 23% fewer UniProt sequences than mammals, insects yield
-                  3× more distinct protein families (1.82M vs 0.60M) — and
-                  99.4% remain unreviewed.
+                  From 23% fewer sequenced proteins than mammals, insects
+                  already yield 3× more distinct protein families (1.82M vs
+                  0.60M) — and 99.4% remain unreviewed.
                 </span>
-                <span class="figure-cta">Open figure →</span>
+                <span class="figure-cta"><span class="cta-hover">Hover to inspect</span><span class="cta-tap">Tap to inspect</span></span>
               </button>
             </li>
           </ol>
@@ -189,7 +193,8 @@
           <p class="divergence-coda">
             That sequence drift pushes homologous insect proteins past the ~30%
             identity horizon where linear search loses sight of them — while
-            their 3D folds endure. Select any stage above to inspect the data.
+            their 3D folds endure. Hover over any stage above to inspect the
+            data.
           </p>
         </div>
       </section>
@@ -287,11 +292,12 @@
               <p class="badge">Example of a candidate protein</p>
               <div id="status" class="status">Loading structure…</div>
               <div id="viewport"></div>
+              <p id="protein-hud" class="protein-hud" aria-live="polite">Drag to rotate · scroll to zoom</p>
               <div class="legend" aria-hidden="true">
                 <span><i class="swatch helix"></i>helix</span>
                 <span><i class="swatch beta"></i>sheet</span>
                 <span><i class="swatch loop"></i>loop</span>
-                <span><i class="swatch cys"></i>Cys</span>
+                <span><i class="swatch cys"></i>Cys / S–S</span>
               </div>
             </div>
             <figcaption>
@@ -381,18 +387,18 @@
       await mountChain(document.getElementById("chain"), {
         foldsUrl: "./animations/folds.json",
         linearEvery: 7,
-        generatedFolds: 12,
+        generatedFolds: 10,
         showCaption: false,
         fitStep: true,
         background: "transparent",
-        initialHoldMs: reduce ? 1e9 : 5000,
+        initialHoldMs: reduce ? 1e9 : 4600,
         fontFamily: '"Space Grotesk", ui-sans-serif, system-ui, sans-serif',
       });
       fade.classList.add("is-in");
       logo.classList.add("is-in");
     </script>
-    <script src="js/protein.js"></script>
-    <script src="js/figures.js"></script>
-    <script src="js/site.js"></script>
+    <script src="js/protein.js" defer></script>
+    <script src="js/figures.js" defer></script>
+    <script src="js/site.js" defer></script>
   </body>
 </html>
