@@ -83,33 +83,202 @@
       </section>
 
       <section class="panel panel-scroll" id="insects" aria-label="Why insects">
-        <div class="sheet">
-          <h1>Why insects?</h1>
-          <p>
-            Insects are the most abundant and diverse terrestrial animals on the
-            planet. Humanity has named about 1 million species, roughly
-            two-thirds of every animal species ever described, but we believe
-            that is less than 20% of the true total. Their diverse biologies and
-            behaviors mean genetic diversity, which means protein diversity.
+        <div class="sheet sheet-wide">
+          <p class="kicker">The untapped biological library</p>
+          <h1 class="wide-title">Why insects?</h1>
+          <p class="divergence-intro">
+            Insects are the most abundant and diverse terrestrial animals on
+            Earth: humanity has named about 1 million species — roughly
+            two-thirds of all described animals — yet we believe that is under
+            20% of the true total. Parasitoid wasps hijack hosts with
+            neurotoxins, mosquitoes take blood under the cover of anesthetizing
+            saliva, ants farm subterranean fungus gardens, and other insects
+            spin silk or survive sub-zero freezes. Each specialized lifestyle
+            runs on a library of proteins, yet fewer than 1% of insect species
+            have even been sequenced.
           </p>
-          <p>
-            Yet fewer than 10 thousand insect genomes have been sequenced, and
-            only a tiny fraction of those have been annotated such that their
-            proteomes are legible to us. For the majority of sequenced insect
-            genomes, let alone all insect genomes, their proteomes remain
-            largely inscrutable. This is an enormous opportunity.
+
+          <ol class="figure-triggers" aria-label="Why insects comparative visualizations">
+            <li>
+              <button
+                class="figure-card"
+                type="button"
+                data-figure="biodiversity"
+                aria-expanded="false"
+                aria-controls="figure-modal"
+              >
+                <span class="figure-step">01 · Biodiversity share</span>
+                <span class="figure-stat">~67% of animals</span>
+                <span class="figure-heading">Two-thirds of named animals are insects</span>
+                <span class="figure-summary">
+                  Every mammal on Earth fits into 0.4% of described animal
+                  species — while ~4.5 million insect species likely remain
+                  unnamed.
+                </span>
+                <span class="figure-cta"><span class="cta-hover">Hover to inspect</span><span class="cta-tap">Tap to inspect</span></span>
+              </button>
+            </li>
+
+            <li class="is-highlight">
+              <button
+                class="figure-card"
+                type="button"
+                data-figure="sequencing"
+                aria-expanded="false"
+                aria-controls="figure-modal"
+              >
+                <span class="figure-step">02 · Sequenced genomes</span>
+                <span class="figure-stat">0.61% vs 15.2%</span>
+                <span class="figure-heading">Insect genomes are 25× less sequenced</span>
+                <span class="figure-summary">
+                  NCBI holds 6,063 insect vs 1,010 mammal genomes, yet 99.4% of
+                  named insects remain unsequenced and 92.5% unannotated.
+                </span>
+                <span class="figure-cta"><span class="cta-hover">Hover to inspect</span><span class="cta-tap">Tap to inspect</span></span>
+              </button>
+            </li>
+
+            <li>
+              <button
+                class="figure-card"
+                type="button"
+                data-figure="niches"
+                aria-expanded="false"
+                aria-controls="figure-modal"
+              >
+                <span class="figure-step">03 · Protein toolkits</span>
+                <span class="figure-stat">25–100 aa</span>
+                <span class="figure-heading">Extreme lifestyles run on secreted peptides</span>
+                <span class="figure-summary">
+                  Venoms, salivary blockers, immune peptides, and antifreeze
+                  coils concentrate potent function into compact, foldable
+                  protein chains.
+                </span>
+                <span class="figure-cta"><span class="cta-hover">Hover to inspect</span><span class="cta-tap">Tap to inspect</span></span>
+              </button>
+            </li>
+          </ol>
+
+          <p class="divergence-coda">
+            This mismatch — unmatched ecological diversity paired with sparse
+            annotation — is why Entomolecular focuses on this nearly untapped
+            natural resource.
           </p>
-          <p>
-            Parasitoid wasps use complex neurotoxins to control the behavior of
-            hosts. Ants farm massive fungus gardens 5 meters underground.
-            Mosquitoes take blood under the cover of anesthetizing saliva. Other
-            insects spin silk, or force a plant to grow a gall, or survive high
-            altitudes and freezing temperatures. Each of these unique lifestyles
-            is made possible by a set of proteins.
+        </div>
+      </section>
+
+      <section class="panel panel-scroll" id="proteins" aria-label="Insect-derived proteins">
+        <div class="sheet sheet-wide">
+          <p class="kicker">Proven precedent · derived from Insecta</p>
+          <h1 class="wide-title">Five insect proteins already in use.</h1>
+          <p class="divergence-intro">
+            Long before modern AI structure search, a handful of proteins taken
+            directly from insects quietly became workhorses across medicine,
+            diagnostics, and materials science. Hover over any example to view
+            the source insect and its real-world application.
           </p>
-          <p>
-            This is why Entomolecular is focused on this nearly untapped natural
-            resource.
+
+          <ol class="figure-triggers figure-triggers-5" aria-label="Five insect-derived proteins">
+            <li class="is-highlight">
+              <button
+                class="figure-card"
+                type="button"
+                data-figure="luciferase"
+                aria-expanded="false"
+                aria-controls="figure-modal"
+              >
+                <span class="figure-step">01 · Coleoptera</span>
+                <span class="figure-stat figure-stat-name">Luciferase</span>
+                <span class="figure-heading"><em>Photinus pyralis</em></span>
+                <span class="figure-summary">
+                  Firefly light enzyme powering global ATP hygiene swabs and
+                  live biomedical imaging.
+                </span>
+                <span class="figure-cta"><span class="cta-hover">Hover to inspect</span><span class="cta-tap">Tap to inspect</span></span>
+              </button>
+            </li>
+
+            <li>
+              <button
+                class="figure-card"
+                type="button"
+                data-figure="fibroin"
+                aria-expanded="false"
+                aria-controls="figure-modal"
+              >
+                <span class="figure-step">02 · Lepidoptera</span>
+                <span class="figure-stat figure-stat-name">Silk Fibroin</span>
+                <span class="figure-heading"><em>Bombyx mori</em></span>
+                <span class="figure-summary">
+                  Silkworm β-sheet protein engineered into surgical sutures,
+                  meshes, and tissue scaffolds.
+                </span>
+                <span class="figure-cta"><span class="cta-hover">Hover to inspect</span><span class="cta-tap">Tap to inspect</span></span>
+              </button>
+            </li>
+
+            <li>
+              <button
+                class="figure-card"
+                type="button"
+                data-figure="cecropin"
+                aria-expanded="false"
+                aria-controls="figure-modal"
+              >
+                <span class="figure-step">03 · Lepidoptera</span>
+                <span class="figure-stat figure-stat-name">Cecropin</span>
+                <span class="figure-heading"><em>Hyalophora cecropia</em></span>
+                <span class="figure-summary">
+                  First animal antimicrobial peptide ever isolated — template
+                  for peptide antibiotics.
+                </span>
+                <span class="figure-cta"><span class="cta-hover">Hover to inspect</span><span class="cta-tap">Tap to inspect</span></span>
+              </button>
+            </li>
+
+            <li>
+              <button
+                class="figure-card"
+                type="button"
+                data-figure="melittin"
+                aria-expanded="false"
+                aria-controls="figure-modal"
+              >
+                <span class="figure-step">04 · Hymenoptera</span>
+                <span class="figure-stat figure-stat-name">Melittin</span>
+                <span class="figure-heading"><em>Apis mellifera</em></span>
+                <span class="figure-summary">
+                  26-aa honeybee venom peptide driving targeted nanoparticle
+                  oncology and immunotherapy.
+                </span>
+                <span class="figure-cta"><span class="cta-hover">Hover to inspect</span><span class="cta-tap">Tap to inspect</span></span>
+              </button>
+            </li>
+
+            <li>
+              <button
+                class="figure-card"
+                type="button"
+                data-figure="afp"
+                aria-expanded="false"
+                aria-controls="figure-modal"
+              >
+                <span class="figure-step">05 · Coleoptera</span>
+                <span class="figure-stat figure-stat-name">Antifreeze</span>
+                <span class="figure-heading"><em>Tenebrio molitor</em></span>
+                <span class="figure-summary">
+                  Disulfide-locked coil halting ice growth 10–100× stronger than
+                  fish AFPs for cryo-storage.
+                </span>
+                <span class="figure-cta"><span class="cta-hover">Hover to inspect</span><span class="cta-tap">Tap to inspect</span></span>
+              </button>
+            </li>
+          </ol>
+
+          <p class="divergence-coda">
+            All five came from well-known species found by hand — representing
+            less than a millionth of the insect proteome still waiting to be
+            searched systematically.
           </p>
         </div>
       </section>
@@ -336,17 +505,7 @@
       <div class="figure-backdrop"></div>
       <div class="figure-dialog">
         <div class="figure-bar">
-          <div class="figure-tabs" role="tablist" aria-label="Comparative figures">
-            <button class="figure-tab" type="button" role="tab" data-figure-tab="core" aria-selected="false">
-              01 · Core erosion
-            </button>
-            <button class="figure-tab" type="button" role="tab" data-figure-tab="morphospace" aria-selected="false">
-              02 · Genome space
-            </button>
-            <button class="figure-tab" type="button" role="tab" data-figure-tab="novelty" aria-selected="false">
-              03 · Protein novelty
-            </button>
-          </div>
+          <div class="figure-tabs" role="tablist" aria-label="Figures"></div>
           <button class="figure-close" type="button" aria-label="Close figure">
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M6 6 L18 18 M18 6 L6 18" />
